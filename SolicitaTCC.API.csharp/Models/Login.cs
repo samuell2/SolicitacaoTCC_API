@@ -12,7 +12,7 @@ namespace SolicitaTCC.API.csharp.Models
     {
         public string PESSOA_ID { get; set; }
 
-        public Login(string PESSOA_ID)
+        public Login(string pessoa_id)
         {
             this.PESSOA_ID = pessoa_id;
         }
@@ -58,7 +58,7 @@ namespace SolicitaTCC.API.csharp.Models
                 pessoa.TIPOPESSOA_ID = Convert.ToInt32(row["TIPOPESSOA_ID"]);
                 pessoa.EMAIL = row["EMAIL"].ToString();
                 pessoa.RA = row["RA"].ToString();
-                pessoa.AREA_ATUACAO = row["AREA_ATUACAO"].ToStringI();
+                pessoa.AREA_ATUACAO = row["AREA_ATUACAO"].ToString();
                 pessoa.USUARIO = row["USUARIO"].ToString();
                 pessoa.STATUS = Convert.ToInt32(row["STATUS"]);
 

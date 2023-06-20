@@ -8,8 +8,8 @@ namespace SolicitaTCC.API.csharp.Services
 {
     public class LoginService
     {
-        string connectionStringLocalhost = @"Data Source=CARLOSRODRIGUES\SQLEXPRESS;Initial Catalog=DB_AVANCADO;User ID=USERCSHARP;Password=USERCSHARP;Integrated Security=SSPI;TrustServerCertificate=True";
-        string connectionString = @"Data Source=201.62.57.93;Initial Catalog=BD042700;User ID=RA042700;Password=042700;TrustServerCertificate=True";
+        //string connectionStringLocalhost = @"Data Source=CARLOSRODRIGUES\SQLEXPRESS;Initial Catalog=DB_AVANCADO;User ID=USERCSHARP;Password=USERCSHARP;Integrated Security=SSPI;TrustServerCertificate=True";
+        string connectionString = @"Data Source=201.62.57.93,1434;Initial Catalog=BD043452;User ID=RA043452;Password=043452;TrustServerCertificate=True";
 
         public Login Login(userLogin userLogin)
         {

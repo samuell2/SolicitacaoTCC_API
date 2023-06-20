@@ -8,8 +8,8 @@ namespace SolicitaTCC.API.csharp.Services
 {
     public class WorkerAdivisor
     {
-        string connectionStringLocalhost = @"Data Source=CARLOSRODRIGUES\SQLEXPRESS;Initial Catalog=DB_AVANCADO;User ID=USERCSHARP;Password=USERCSHARP;Integrated Security=SSPI;TrustServerCertificate=True";
-        string connectionString = @"Data Source=201.62.57.93;Initial Catalog=BD042700;User ID=RA042700;Password=042700;TrustServerCertificate=True";
+        //string connectionStringLocalhost = @"Data Source=CARLOSRODRIGUES\SQLEXPRESS;Initial Catalog=DB_AVANCADO;User ID=USERCSHARP;Password=USERCSHARP;Integrated Security=SSPI;TrustServerCertificate=True";
+        string connectionString = @"Data Source=201.62.57.93,1434;Initial Catalog=BD043452;User ID=RA043452;Password=043452;TrustServerCertificate=True";
 
         public List<Workers> getAdvisor(getWorker data)
         {
@@ -105,16 +105,9 @@ namespace SolicitaTCC.API.csharp.Services
                             request.SOLICITACAO_ID = Convert.ToInt32(row["SOLICITACAO_ID"]);
                             request.ALUNO = loginService.GetPeople(new Login(row["ALUNO_SOLIC_ID"].ToString()));
                             request.PROFESSOR = loginService.GetPeople(new Login(row["PROF_ORIENT_ID"].ToString()));
-                            request.SITUACAO_ID = Convert.ToInt32(row["SITUACAO_ID"]);
-                            request.SITUACAO = row["SITUACAO"].ToString();
                             request.NOME_PROJ = row["NOME_PROJ"].ToString();
-                            request.DESCRICAO = row["DESCRICAO"].ToString();
-                            request.DT_APROVACAO = row["DT_APROVACAO"].ToString();
-                            request.DT_REPROVACAO = row["DT_REPROVACAO"].ToString();
-                            request.JUSTIFICATIVA = row["JUSTIFICATIVA"].ToString();
-                            request.PESSOA_REPROVACAO = row["PESSOA_RECUSOU_ID"].ToString() != "" ? loginService.GetPeople(new Login(row["PESSOA_RECUSOU_ID"].ToString())) : null;
+                            request.DESCRICAO = row["DESCRICAO"].ToString();                            
                             request.DT_CADASTRO = row["DT_CADASTRO"].ToString();
-                            request.STATUS = Convert.ToInt32(row["STATUS"]);
 
                             response.Add(request);
                         }

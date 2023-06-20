@@ -11,7 +11,7 @@ namespace SolicitaTCC.API.csharp.Models
     public class Workers
     {
         public int PESSOA_ID { get; set; }
-        public string NOME { get; set; }
+        public string NOME_PROJ { get; set; }
         public string AREA_ATUACAO { get; set; }
         public string ACEITA_TRABALHO { get; set; }
     }
@@ -153,7 +153,6 @@ namespace SolicitaTCC.API.csharp.Models
                 professor.AREA_ATUACAO = row["AREA_ATUACAO"].ToString();
                 professor.NOME_PROJ = row["NOME_PROJ"].ToString();
                 professor.ACEITA_TRABALHO = row["ACEITA_TRABALHO"].ToString();
-                professor.IMG = row["IMG"].ToString();
                 professores.Add(professor);
             }
 
