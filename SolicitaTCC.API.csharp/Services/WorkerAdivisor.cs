@@ -18,7 +18,7 @@ namespace SolicitaTCC.API.csharp.Services
                 SqlConnection conn = new SqlConnection(connectionString);
 
                 DataTable dt1 = new DataTable();
-                using (SqlDataAdapter adp = new SqlDataAdapter(@"EXEC PR_BUSCA_USUARIO @PESSOA_ID", conn))
+                using (SqlDataAdapter adp = new SqlDataAdapter(@"EXEC PR_BUSCA_PROF @PESSOA_ID", conn))
                 {
                     adp.SelectCommand.CommandType = CommandType.Text;
                     adp.SelectCommand.Parameters.Add(new SqlParameter("@PESSOA_ID", Convert.ToInt32(data.PESSOA_ID)));
