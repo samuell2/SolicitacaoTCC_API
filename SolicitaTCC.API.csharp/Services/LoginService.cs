@@ -10,7 +10,7 @@ namespace SolicitaTCC.API.csharp.Services
     {
         //string connectionStringLocalhost = @"Data Source=CARLOSRODRIGUES\SQLEXPRESS;Initial Catalog=DB_AVANCADO;User ID=USERCSHARP;Password=USERCSHARP;Integrated Security=SSPI;TrustServerCertificate=True";
         string connectionString = @"Data Source=201.62.57.93,1434;Initial Catalog=BD043452;User ID=RA043452;Password=043452;TrustServerCertificate=True";
-
+        
         public Login Login(userLogin userLogin)
         {
             try
@@ -40,6 +40,43 @@ namespace SolicitaTCC.API.csharp.Services
             }
         }
 
+        public List<Professores> Professores()
+        {
+            List<Professores> professores = new List<Professores>();
+            try
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+
+                DataTable dt1 = new DataTable();
+                using (SqlDataAdapter adp = new SqlDataAdapter(@"SELECT NOME, AREA_ATUACAO, PESSOA_ID FROM h1.PESSOA WHERE TIPOPESSOA_ID = 2", conn))
+                {
+                    adp.SelectCommand.CommandType = CommandType.Text;
+                    adp.Fill(dt1);
+
+                    if (dt1.Rows.Count <= 0)
+                    {
+                        throw new Exception("Nenhum professor encontrado!");
+                    }
+                    else
+                    {
+                        foreach (DataRow dr in dt1.Rows)
+                        {
+                            Professores professor = new Professores();
+                            professor.PESSOA_ID = Int32.Parse(dr["PESSOA_ID"].ToString());
+                            professor.NOME = dr["NOME"].ToString();
+                            professor.AREA_ATUACAO = dr["AREA_ATUACAO"].ToString();
+                            professores.Add(professor);
+                        }
+                        return professores;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public Login LoginCreate(CreateLogin user)
         {
             try
@@ -63,8 +100,8 @@ namespace SolicitaTCC.API.csharp.Services
                     adp.SelectCommand.Parameters.Add(new SqlParameter("@TIPOPESSOA_ID", user.TIPOPESSOA_ID));
                     adp.SelectCommand.Parameters.Add(new SqlParameter("@EMAIL", user.EMAIL));
                     adp.SelectCommand.Parameters.Add(new SqlParameter("@PSSW", user.SENHA));
-                    adp.SelectCommand.Parameters.Add(new SqlParameter("@RA", user.TIPOPESSOA_ID == 1 ? "NULL" : user.RA));
-                    adp.SelectCommand.Parameters.Add(new SqlParameter("@USUARIO", user.TIPOPESSOA_ID == 2 ? "NULL" : user.USUARIO));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@RA", user.TIPOPESSOA_ID == 1 ? user.RA : ""));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@USUARIO", user.USUARIO));
                     adp.SelectCommand.Parameters.Add(new SqlParameter("@AREA_ATUACAO", user.AREA_ATUACAO));
                     adp.Fill(dt1);
 

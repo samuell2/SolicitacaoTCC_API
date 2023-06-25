@@ -18,6 +18,14 @@ namespace SolicitaTCC.API.csharp.Models
         }
     }
 
+    public class Professores
+    {
+        public string NOME { get; set; }
+        public int PESSOA_ID { get; set; }
+        public string AREA_ATUACAO { get; set; }
+
+    }
+
     public class CreateLogin
     {
         public string NOME { get; set; }

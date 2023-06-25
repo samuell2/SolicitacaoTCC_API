@@ -8,7 +8,7 @@ namespace SolicitaTCC.API.csharp.Controllers
     [Route("login")]
     public class LoginController : Controller
     {
-        [Route("post")]
+        [Route("login")]
         [HttpPost]
         public IActionResult Login(userLogin userLogin)
         {
@@ -47,6 +47,22 @@ namespace SolicitaTCC.API.csharp.Controllers
             {
                 LoginService loginService = new LoginService();
                 var Results = loginService.GetPeople(user);
+                return Ok(new { success = true, result = Results });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, mensagem = ex.Message });
+            }
+        }
+
+        [Route("GetProfessor")]
+        [HttpGet]
+        public IActionResult GetProfessor()
+        {
+            try
+            {
+                LoginService loginService = new LoginService();
+                var Results = loginService.Professores();
                 return Ok(new { success = true, result = Results });
             }
             catch (Exception ex)

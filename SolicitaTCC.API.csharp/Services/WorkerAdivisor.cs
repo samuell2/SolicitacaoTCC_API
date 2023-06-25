@@ -103,11 +103,13 @@ namespace SolicitaTCC.API.csharp.Services
                             RequestWorkers request = new RequestWorkers();
 
                             request.SOLICITACAO_ID = Convert.ToInt32(row["SOLICITACAO_ID"]);
-                            request.ALUNO = loginService.GetPeople(new Login(row["ALUNO_SOLIC_ID"].ToString()));
-                            request.PROFESSOR = loginService.GetPeople(new Login(row["PROF_ORIENT_ID"].ToString()));
                             request.NOME_PROJ = row["NOME_PROJ"].ToString();
                             request.DESCRICAO = row["DESCRICAO"].ToString();                            
                             request.DT_CADASTRO = row["DT_CADASTRO"].ToString();
+                            request.ALUNO_SOLIC_ID = Convert.ToInt32(row["ALUNO_SOLIC_ID"]);
+                            request.PROF_ORIENT_ID = Convert.ToInt32(row["PROF_ORIENT_ID"]);
+                            request.NOME_ALUNO = row["NOME_ALUNO"].ToString();
+
 
                             response.Add(request);
                         }

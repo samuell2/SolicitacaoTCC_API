@@ -17,8 +17,9 @@ namespace SolicitaTCC.API.csharp.Models
     public class RequestWorkers
     {
         public int SOLICITACAO_ID { get; set; }
-        public Pessoa ALUNO { get; set; }
-        public Pessoa PROFESSOR { get; set; }
+        public int ALUNO_SOLIC_ID { get; set; }
+        public int PROF_ORIENT_ID { get; set; }
+        public string NOME_ALUNO { get; set; }
         public int SITUACAO_ID { get; set; }
         public string SITUACAO { get; set; }
         public string NOME_PROJ { get; set; }
@@ -26,7 +27,6 @@ namespace SolicitaTCC.API.csharp.Models
         public string DT_APROVACAO { get; set; }
         public string DT_REPROVACAO { get; set; }
         public string JUSTIFICATIVA { get; set; }
-        public Pessoa PESSOA_RECUSOU_ID { get; set; }
         public string DT_CADASTRO { get; set; }
         public int STATUS { get; set; }
 
