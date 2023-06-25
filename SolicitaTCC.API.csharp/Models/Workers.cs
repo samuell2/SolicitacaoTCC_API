@@ -7,6 +7,17 @@ namespace SolicitaTCC.API.csharp.Models
         public int PESSOA_ID { get; set; }
 
     }
+    public class Worker
+    {
+        public int SOLICITACAO_ID { get; set; }
+
+    }
+    public class WorkerData
+    {
+        public int SOLICITACAO_ID { get; set; }
+        public string NOME_PROJ { get; set; }
+        public string DESCRICAO { get; set; }
+    }
 
     public class Workers
     {
@@ -155,7 +166,24 @@ namespace SolicitaTCC.API.csharp.Models
             return professores;
         }
 
-        
+        public List<WorkerData> DataTableListSolic(DataTable dt)
+        {
+            List<WorkerData> solicList = new List<WorkerData>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                WorkerData solic = new WorkerData();
+
+                solic.SOLICITACAO_ID = Convert.ToInt32(row["SOLICITACAO_ID"]);
+                solic.NOME_PROJ = row["NOME_PROJ"].ToString();
+                solic.DESCRICAO = row["DESCRICAO"].ToString();
+                solicList.Add(solic);
+            }
+
+            return solicList;
+        }
+
+
     }
 
 

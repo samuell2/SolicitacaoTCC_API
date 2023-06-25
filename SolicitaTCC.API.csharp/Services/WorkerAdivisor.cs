@@ -128,5 +128,36 @@ namespace SolicitaTCC.API.csharp.Services
             }
         }
 
+        public WorkerData Request(Worker worker)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+                DataTable dt1 = new DataTable();
+                using (SqlDataAdapter adp = new SqlDataAdapter(@"SELECT * FROM H1.SOLICITACAO WHERE SOLICITACAO_ID = @SOLICITACAO_ID", conn))
+                {
+                    adp.SelectCommand.CommandType = CommandType.Text;
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@SOLICITACAO_ID", Convert.ToInt32(worker.SOLICITACAO_ID)));
+
+
+                    adp.Fill(dt1);
+
+                    if (dt1.Rows.Count > 0)
+                    {
+                        List<WorkerData> response = new WorkerFunctions().DataTableListSolic(dt1);
+                        return response[0];
+                    }
+                    else
+                    {
+                        throw new Exception("Nenhuma solcitação para esses parametros!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }
